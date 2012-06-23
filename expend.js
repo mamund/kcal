@@ -80,7 +80,7 @@ function fillActivityList() {
 	g.activity.push({id : 'mow1', title : 'Mowing Lawn: push, hand', factor : 0.044});
 	g.activity.push({id : 'mow2', title : 'Mowing Lawn: push, power', factor : 0.036});
 	g.activity.push({id : 'snow1', title : 'Operate Snow Blower: walking', factor : 0.036});
-	g.activity.push({id : 'games', title : 'Children's Games: 4-square, etc.', factor : 0.040});
+	g.activity.push({id : 'games', title : 'Children\'s Games: 4-square, etc.', factor : 0.040});
 	g.activity.push({id : 'lawn', title : 'Raking Lawn', factor : 0.032});
 	g.activity.push({id : 'sex', title : 'Sex: moderate effort', factor : 0.012});
 	g.activity.push({id : 'snow2', title : 'Shoveling Snow: by hand', factor : 0.048});	
