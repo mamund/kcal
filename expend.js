@@ -89,11 +89,15 @@ function fillActivityList() {
 
 function calc(weight, minutes, id)
 {
-	var cal, act;
-
+	var act;
 	act = getActivity(id);
-	cal = (Math.round(weight * minutes * act.factor));
-	act.calories = cal;
+
+	// append state data
+	if(act) {
+		act.calories = (Math.round(weight * minutes * act.factor));
+		act.weight = weight;
+		act.minutes = act.minutes;
+	}
 	return act;
 }
 
@@ -104,7 +108,6 @@ function getActivity(id) {
 	for(i=0, x=coll.length; i<x; i++) {
 		if(coll[i].id===id) {
 			act = coll[i];
-			console.log(act);
 			break;
 		}
 	}

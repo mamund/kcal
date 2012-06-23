@@ -28,10 +28,16 @@ collection.queries = [];
 collection.template = [];
 
 // load up services links
-collection.links = [
+collection.queries = [
 	{link : { href : host + '/maintain/', rel : 'maintain'}},
-	{link : { href : host + '/expend/', rel : 'expend'}}, 
-	{link : { href : host + '/deficit/', rel : 'deficit'}}	
+	{link : { href : host + '/deficit/', rel : 'deficit'}},	
+	{link : { href : host + '/expend/', rel : 'expend', 
+		data : [
+			{name : 'w', prompt : 'Weight'},
+			{name : 'm', prompt : 'Minutes'},
+			{name : 'id', prompt : 'Activity Id'}
+		]
+	}} 
 ];
 
 function handler(req, res) {
@@ -90,23 +96,36 @@ function showExpend(req, res) {
 		showError(req, res, 415, null, req.method + ' not allowed here');
 	}
 	else {
-		var g = expend.init();
-		var act = expend.calc(210, 30, 'aero1');
-    var item = {};
+		// get args
+		var args = url.parse(req.url,true);
+		
+		if(!args.query.w || !args.query.m || !args.query.id) {
+			showError(res, req, 400, null, 'Missing args w or m or id'); 
+		}
+    else {
+			// compute expended calories
+			var g = expend.init();
+			var act = expend.calc(args.query.w, args.query.m, args.query.id);
+    
+			// build response
+			var item = {};
+			item.href = host + req.url;
+			item.data = [];
+			item.data.push({name : 'id', value : act.id});
+			item.data.push({name : 'title', value : act.title});
+			item.data.push({name : 'weight', value : args.query.w});
+			item.data.push({name : 'minutes', value :args.query.m});
+			item.data.push({name : 'factor', value : act.factor});
+			item.data.push({name : 'calories', value : act.calories});
+			
+			collection.items = [];
+			collection.items.push(item);
+			setSelfLink(req);
 
-		item.href = host + '/expend/?aero1';
-		item.data = [];
-		item.data.push({name : 'id', value : act.id});
-		item.data.push({name : 'title', value : act.title});
-		item.data.push({name : 'weight', value : 210});
-		item.data.push({name : 'minutes', value : 30});
-		item.data.push({name : 'factor', value : act.factor});
-		item.data.push({name : 'calories', value : act.calories});
-		collection.items.push(item);
-
-		setSelfLink(req);
-		res.writeHead(200,'OK',ctype);
-		res.end(JSON.stringify(collection));	
+			// send out the door
+			res.writeHead(200,'OK',ctype);
+			res.end(JSON.stringify(collection));	
+		}
 	}
 }
 
