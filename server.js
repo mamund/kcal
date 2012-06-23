@@ -14,9 +14,12 @@ var devType = 'application/json';
 var ctype = {'Content-Type' : devType};
 
 // handle server for dev/production
-var prodHost = 'http://localhost';
+var prodHost = 'http://kcal.azurewebsites';
 var devHost = 'http://localhost:' + port;
 var host = devHost;
+if(node_env==='production') {
+	host = prodHost;
+}
 
 // initialize collection object
 var collection = {};
