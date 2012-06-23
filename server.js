@@ -106,7 +106,7 @@ function showExpend(req, res) {
 		var args = url.parse(req.url,true);
 		
 		if(!args.query.w || !args.query.m || !args.query.id) {
-			showError(res, req, 400, null, 'Missing args w or m or id'); 
+			showError(req, res, 400, null, 'Missing args w or m or id'); 
 		}
     else {
 			// compute expended calories
