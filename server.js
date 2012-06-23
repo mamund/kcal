@@ -54,6 +54,9 @@ function handler(req, res) {
 	}
 }
 
+// ***********************************************
+// main responders
+// ***********************************************
 function showRoot(req, res) {
 	if(req.method !== 'GET') {
 		showError(req, res, 415, null, req.method + ' not allowed here');
@@ -112,6 +115,9 @@ function showError(req, res, status, code, message) {
 	res.end(JSON.stringify(coll));
 }
 
+// ***********************************************
+// utility routines
+// ***********************************************
 function getEmptyCollection(req) {
 	var c = {};
 	c.href = host + '/';
@@ -136,6 +142,7 @@ function setSelfLink(req) {
 	}
 }
 
+// bind listener
 http.createServer(handler).listen(port);
 console.log('running on ' + port);
 
