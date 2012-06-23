@@ -37,4 +37,7 @@ Before showing up for the session, handle the following
 1. fire up console, start cmd, git, and vim windows
 1. log into github and create an empty repo (kcal) w/ README
 1. pull repo onto local machine
-1. update README w/ main bullets 
+1. update README w/ main bullets
+1. start server.js for root services
+1. write response scaffolding (could skipl if using express or some other lib)
+1. create package.json file
