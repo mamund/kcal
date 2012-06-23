@@ -26,7 +26,7 @@ collection.template = [];
 collection.links = [
 	{link : { href : host + '/maintain/', rel : 'maintain'}},
 	{link : { href : host + '/expend/', rel : 'expend'}}, 
-  {link : { href : host + '/deficit/', rel : 'deficit'}}	
+	{link : { href : host + '/deficit/', rel : 'deficit'}}	
 ];
 
 function handler(req, res) {

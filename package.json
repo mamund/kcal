@@ -1,0 +1,23 @@
+{
+   "name": "kcal",
+   "version": "0.1",
+   "description": "Demonstration package for caloric computations",
+   "keywords": [
+       "kcal",
+       "calories" 
+   ],
+   "maintainers": [
+       {
+           "name": "Mike Amundsen",
+           "email": "mca@mamund.com",
+           "web": "http://amundsen.com" 
+       } 
+   ],
+   "repositories": [
+       {
+           "type": "git",
+           "url": "https://github.com/mamund/kcal.git" 
+       } 
+   ]
+}
+
