@@ -116,4 +116,4 @@ function getActivity(id) {
 // exports
 exports.calc = calc;
 exports.init = init;
-
+exports.get = getActivity;

@@ -77,6 +77,7 @@ function showRoot(req, res) {
 		showError(req, res, 415, null, req.method + ' not allowed here');
 	}
 	else {
+		collection.items = [];
 		setSelfLink(req);
 		res.writeHead(200,'OK',ctype);
 		res.end(JSON.stringify(collection));	
@@ -106,14 +107,15 @@ function showExpend(req, res) {
 	else {
 		// get args
 		var args = url.parse(req.url,true);
-		if(!args.query.w || !args.query.m || !args.query.id) {
+		
+		if(!args.query.w && !args.query.m && !args.query.id) {
 			g = expend.init();
 			list = g.activity;
 			collection.items = [];
 			
 			for(i=0, x=list.length; i<x; i++) {
 				var item = {};
-				item.href = host + '/expend/?'+list[i].id;
+				item.href = host + '/expend/?id='+list[i].id;
 				item.data = [];
 				item.data.push({name : 'id', value : list[i].id});
 				item.data.push({name : 'title', value : list[i].title});
@@ -124,7 +126,30 @@ function showExpend(req, res) {
 
 			// send out the door
 			res.writeHead(200,'OK',ctype);
+			res.end(JSON.stringify(collection));
+			return;
+		}
+
+		if(!args.query.w && !args.query.m && args.query.id) {
+			g = expend.init();
+			act = expend.get(args.query.id);
+			collection.items = [];
+
+			var item = {};
+			item.href = host + req.url;
+			item.data = [];
+			item.data.push({name : 'id', value : act.id});
+			item.data.push({name : 'title', value : act.title});
+			item.data.push({name : 'factor', value : act.factor});
+			
+			collection.items = [];
+			collection.items.push(item);
+			setSelfLink(req);
+
+			// send out the door
+			res.writeHead(200,'OK',ctype);
 			res.end(JSON.stringify(collection));	
+
 		}
     else {
 			// compute expended calories
