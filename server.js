@@ -1,6 +1,8 @@
 /* KCAL Project */
 
 var http = require('http');
+var url = require('url');
+
 var port = (process.env.HTTP || 1337);
 
 // handle content-type for dev/production
@@ -15,7 +17,7 @@ var host = devHost;
 
 // initialize collection object
 var collection = {};
-collection.href = '/';
+collection.href = host + '/';
 collection.version = '1.0';
 collection.links = [];
 collection.items = [];
@@ -31,8 +33,9 @@ collection.links = [
 
 function handler(req, res) {
   // check URI
-	var url = req.url;
-	switch(url) {
+	var path = url.parse(req.url).pathname;
+
+	switch(path) {
 		case '/':
 			showRoot(req, res);
 			break;
@@ -56,6 +59,7 @@ function showRoot(req, res) {
 		showError(req, res, 415, null, req.method + ' not allowed here');
 	}
 	else {
+		setSelfLink(req);
 		res.writeHead(200,'OK',ctype);
 		res.end(JSON.stringify(collection));	
 	}
@@ -66,6 +70,7 @@ function showMaintain(req, res) {
 		showError(req, res, 415, null, req.method + ' not allowed here');
 	}
 	else {
+		setSelfLink(req);
 		res.writeHead(200,'OK',ctype);
 		res.end(JSON.stringify(collection));	
 	}
@@ -76,6 +81,7 @@ function showExpend(req, res) {
 		showError(req, res, 415, null, req.method + ' not allowed here');
 	}
 	else {
+		setSelfLink(req);
 		res.writeHead(200,'OK',ctype);
 		res.end(JSON.stringify(collection));	
 	}
@@ -86,6 +92,7 @@ function showDeficit(req, res) {
 		showError(req, res, 415, null, req.method + ' not allowed here');
 	}
 	else {
+		setSelfLink(req);
 		res.writeHead(200,'OK',ctype);
 		res.end(JSON.stringify(collection));	
 	}
@@ -100,6 +107,7 @@ function showError(req, res, status, code, message) {
 	if(message) {
 		coll.error.message = message;
 	}
+	setSelfLink(req);
 	res.writeHead(status,ctype);
 	res.end(JSON.stringify(coll));
 }
@@ -109,6 +117,23 @@ function getEmptyCollection(req) {
 	c.href = host + '/';
 	c.version = '1.0';
 	return c;
+}
+
+function setSelfLink(req) {
+  var coll, i, x, f;
+	
+	f = false;
+	coll = collection.links;
+	for(i=0, x=coll.length; i<x; i++) {
+		if(coll[i].link.rel==='self') {
+			coll[i].link.href = host + req.url;
+			f = true;
+			break;
+		}
+	}
+	if(f===false) {
+		collection.links.push({link : { href : host + req.url, rel : 'self'}});
+	}
 }
 
 http.createServer(handler).listen(port);
