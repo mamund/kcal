@@ -27,7 +27,7 @@ Design one or more hypermedia services that support the following:
 
 Before showing up for the session, handle the following
 
-* list our target services
+* list out target services, ideas for session
 * research topic, locate sample sites, APIs, routines, etc.
 * make sure machine is ready-to-rock (azure-cli, node, git, vim)
 
