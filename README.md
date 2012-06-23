@@ -1,6 +1,8 @@
 # KCAL Project
 
-## Summary
+## Starting Plan
+
+### Services Summary
 
 Design one or more hypermedia services that support the following:
 
@@ -11,8 +13,7 @@ Design one or more hypermedia services that support the following:
 * tracking calorie expenditure for a person (small database + computation)
 * tracking calorie intake for a person (database problem)
 
-
-## Other Constraints
+### Other Constraints
 
 * Use Windows Azure CLI tools
 * Use only OSS components
@@ -22,3 +23,9 @@ Design one or more hypermedia services that support the following:
 * Use node.js as the server language
 * Use HTML/JS/CSS as client
 
+## Actual Run-through
+
+1. fire up console, start cmd, git, and vim windows
+1. log into github and create an empty repo (kcal) w/ README
+1. pull repo onto local machine
+1. update README w/ main bullets 
