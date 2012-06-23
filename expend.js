@@ -9,15 +9,81 @@ function init() {
 	fillActivityList();
 	return g;
 }
-
+/*
+Bicycling, Stationary: moderate	 
+Bicycling, Stationary: vigorous	 	
+Circuit Training: general	 
+Rowing, Stationary: moderate	 	
+Rowing, Stationary: vigorous	 
+Ski Machine: general	 	
+Stair Step Machine: general	 
+Weight Lifting: general	 	
+Weight Lifting: vigorous	 
+Basketball: playing a game	 	
+Basketball: wheelchair	 
+Bicycling: BMX or mountain	 	
+Bicycling: 12-13.9 mph	 
+Bicycling: 14-15.9 mph	 	
+Boxing: sparring	 
+Football: competitive	 	
+Football: touch, flag, general	 
+Frisbee	 	Golf: carrying clubs	 
+Golf: using cart	 	
+Gymnastics: general	 
+Handball: general	 	
+Hiking: cross-country	 
+Horseback Riding: general	 	
+Ice Skating: general	 
+Martial Arts: general	 	
+Racquetball: competitive	 
+Racquetball: casual, general	 	
+Rock Climbing: ascending	 
+Rock Climbing: repelling	 	
+Rollerblade Skating	 
+Rope Jumping	 	
+Running: 5 mph (12 min/mile)	 
+Running: 5.2 mph (11.5 min/mile)	 	
+Running: 6 mph (10 min/mile)	 
+Running: 6.7 mph (9 min/mile)	 	
+Running: 7.5 mph (8 min/mile)	 
+Running: 8.6 mph (7 min/mile)	 	
+Running: 10 mph (6 min/mile)	 
+Running: pushing wheelchair, marathon wheeling	 	
+Running: cross-country	 
+Skiing: cross-country	 	
+Skiing: downhill	 
+Snow Shoeing	 	
+Softball: general play	 
+Swimming: general	 	
+Tennis: general	 
+Volleyball: non-competitive, general play	 	
+Volleyball: competitive, gymnasium play	 
+Volleyball: beach	 	
+Walk: 3.5 mph (17 min/mi)	 
+Walk: 4 mph (15 min/mi)	 	
+Walk: 4.5 mph (13 min/mi)	 
+Walk/Jog: jog <10 min.	 	
+Water Skiing	 
+Water Polo	 	
+Whitewater: rafting, kayaking	 
+Chopping & Splitting Wood	 	
+Gardening: general	 
+Housecleaning: general	 	
+Mowing Lawn: push, hand	 
+Mowing Lawn: push, power	 	
+Operate Snow Blower: walking	 
+Children's Games: 4-square, etc.	 	
+Raking Lawn	 
+Sex: moderate effort	 	
+Shoveling Snow: by hand
+*/
 function fillActivityList() {
 	g.activity = [];
-	g.activity.push({id : 'aero1', title : '', factor : 0.044});
-	g.activity.push({id : 'aero1', title : '', factor : 0.044});
-	g.activity.push({id : 'aero2', title : '', factor : 0.056});
-	g.activity.push({id : 'aero3', title : '', factor : 0.032});
-	g.activity.push({id : 'aero4', title : '', factor : 0.056});
-	g.activity.push({id : 'aero5', title : '', factor : 0.080});
+	g.activity.push({id : 'aero1', title : 'Aerobics: low impact', factor : 0.044});
+	g.activity.push({id : 'aero2', title : 'Aerobics: high impact', factor : 0.044});
+	g.activity.push({id : 'aero3', title : 'Aerobics, Step: low impact', factor : 0.056});
+	g.activity.push({id : 'aero4', title : 'Aerobics, Step: high impact', factor : 0.032});
+	g.activity.push({id : 'aero5', title : 'Aerobics: water', factor : 0.080});
 	g.activity.push({id : 'cycle1', title : '', factor : 0.056});
 	g.activity.push({id : 'cycle2', title : '', factor : 0.084});
 	g.activity.push({id : 'circuit', title : '', factor : 0.064});
