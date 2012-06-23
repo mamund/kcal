@@ -17,7 +17,7 @@ var ctype = {'Content-Type' : devType};
 var prodHost = 'http://kcal.azurewebsites.net';
 var devHost = 'http://localhost:' + port;
 var host = devHost;
-var nodeEnv = 'production';
+var nodeEnv = 'dev';
 
 // set prod
 if(nodeEnv==='production') {
@@ -98,20 +98,38 @@ function showMaintain(req, res) {
 }
 
 function showExpend(req, res) {
+	var g, act, list, i, x;
+
 	if(req.method !== 'GET') {
 		showError(req, res, 415, null, req.method + ' not allowed here');
 	}
 	else {
 		// get args
 		var args = url.parse(req.url,true);
-		
 		if(!args.query.w || !args.query.m || !args.query.id) {
-			showError(req, res, 400, null, 'Missing args w or m or id'); 
+			g = expend.init();
+			list = g.activity;
+			collection.items = [];
+			
+			for(i=0, x=list.length; i<x; i++) {
+				var item = {};
+				item.href = host + '/expend/?'+list[i].id;
+				item.data = [];
+				item.data.push({name : 'id', value : list[i].id});
+				item.data.push({name : 'title', value : list[i].title});
+				item.data.push({name : 'factor', value : list[i].factor});
+				collection.items.push(item);
+			}
+			setSelfLink(req);
+
+			// send out the door
+			res.writeHead(200,'OK',ctype);
+			res.end(JSON.stringify(collection));	
 		}
     else {
 			// compute expended calories
-			var g = expend.init();
-			var act = expend.calc(args.query.w, args.query.m, args.query.id);
+			g = expend.init();
+			act = expend.calc(args.query.w, args.query.m, args.query.id);
     
 			// build response
 			var item = {};
