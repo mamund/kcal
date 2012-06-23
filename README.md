@@ -44,4 +44,6 @@ Before showing up for the session, handle the following
 1. start module file for expending calories
 1. get expend module working in test mode (static data)
 1. get expend module working in dynamic mode (passed args)
+1. create azure site for hosting
+1. push to azure and check results
 

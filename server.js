@@ -6,7 +6,7 @@ var maintain = require('./maintain.js');
 var expend = require('./expend.js');
 var deficit = require('./deficit.js');
 
-var port = (process.env.HTTP || 1337);
+var port = (process.env.PORT || 1337);
 
 // handle content-type for dev/production
 var prodType = 'application/vnd.collection+json';
