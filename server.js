@@ -14,10 +14,13 @@ var devType = 'application/json';
 var ctype = {'Content-Type' : devType};
 
 // handle server for dev/production
-var prodHost = 'http://kcal.azurewebsites';
+var prodHost = 'http://kcal.azurewebsites.net';
 var devHost = 'http://localhost:' + port;
 var host = devHost;
-if(node_env==='production') {
+var nodeEnv = 'production';
+
+// set prod
+if(nodeEnv==='production') {
 	host = prodHost;
 }
 
