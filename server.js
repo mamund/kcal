@@ -17,7 +17,7 @@ var ctype = {'Content-Type' : devType};
 var prodHost = 'http://kcal.azurewebsites.net';
 var devHost = 'http://localhost:' + port;
 var host = devHost;
-var nodeEnv = 'dev';
+var nodeEnv = 'production';
 
 // set prod
 if(nodeEnv==='production') {
