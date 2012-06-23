@@ -23,6 +23,15 @@ Design one or more hypermedia services that support the following:
 * Use node.js as the server language
 * Use HTML/JS/CSS as client
 
+## Pre-game
+
+Before showing up for the session, handle the following
+
+* list our target services
+* research topic, locate sample sites, APIs, routines, etc.
+* make sure machine is ready-to-rock (azure-cli, node, git, vim)
+
+
 ## Actual Run-through
 
 1. fire up console, start cmd, git, and vim windows
