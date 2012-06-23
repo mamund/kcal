@@ -1,6 +1,6 @@
 {
    "name": "kcal",
-   "version": "0.1",
+   "version": "0.1.0",
    "description": "Demonstration package for caloric computations",
    "keywords": [
        "kcal",
