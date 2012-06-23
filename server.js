@@ -3,6 +3,8 @@
 var http = require('http');
 var url = require('url');
 var maintain = require('./maintain.js');
+var expend = require('./expend.js');
+var deficit = require('./deficit.js');
 
 var port = (process.env.HTTP || 1337);
 
@@ -74,6 +76,9 @@ function showMaintain(req, res) {
 		showError(req, res, 415, null, req.method + ' not allowed here');
 	}
 	else {
+    var g = maintain.init();
+		console.log(g.name);
+
 		setSelfLink(req);
 		res.writeHead(200,'OK',ctype);
 		res.end(JSON.stringify(collection));	
@@ -85,6 +90,20 @@ function showExpend(req, res) {
 		showError(req, res, 415, null, req.method + ' not allowed here');
 	}
 	else {
+		var g = expend.init();
+		var act = expend.calc(210, 30, 'aero1');
+    var item = {};
+
+		item.href = host + '/expend/?aero1';
+		item.data = [];
+		item.data.push({name : 'id', value : act.id});
+		item.data.push({name : 'title', value : act.title});
+		item.data.push({name : 'weight', value : 210});
+		item.data.push({name : 'minutes', value : 30});
+		item.data.push({name : 'factor', value : act.factor});
+		item.data.push({name : 'calories', value : act.calories});
+		collection.items.push(item);
+
 		setSelfLink(req);
 		res.writeHead(200,'OK',ctype);
 		res.end(JSON.stringify(collection));	
@@ -96,6 +115,9 @@ function showDeficit(req, res) {
 		showError(req, res, 415, null, req.method + ' not allowed here');
 	}
 	else {
+    var g = deficit.init();
+		console.log(g.name);
+		
 		setSelfLink(req);
 		res.writeHead(200,'OK',ctype);
 		res.end(JSON.stringify(collection));	

@@ -1,7 +1,7 @@
-/* maintence weight calculator */
+/* compute calorie deficit for a person */
 
 var g = {};
-g.name = 'maintain';
+g.name = 'deficit';
 
 function init() {
 	return g;
