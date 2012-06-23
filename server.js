@@ -2,6 +2,7 @@
 
 var http = require('http');
 var url = require('url');
+var maintain = require('./maintain.js');
 
 var port = (process.env.HTTP || 1337);
 
