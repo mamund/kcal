@@ -42,3 +42,6 @@ Before showing up for the session, handle the following
 1. write response scaffolding (could skipl if using express or some other lib)
 1. create package.json file
 1. start module file for expending calories
+1. get expend module working in test mode (static data)
+1. get expend module working in dynamic mode (passed args)
+
